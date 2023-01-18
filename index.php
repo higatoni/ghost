@@ -17,8 +17,10 @@
     <table>
         <thead>
             <tr>
-                <th> Ville</th>
-                <th class=th2> Code Postaux </th>
+                <th> Nom</th>
+                <th> Couleur </th>
+                <th> Velocite </th>
+                <th> Pv </th>
             </tr>    
         </thead>
         <tbody>
@@ -27,16 +29,22 @@
             ?>
                     <tr>
                         <td>
-                            <?php echo $info["ville_nom"];?>
+                            <?php echo $info["nom"];?>
                         </td>
                         <td>
-                        <?php echo $info["ville_code_postal"];?>
+                        <?php echo $info["couleur"];?>
                         </td>
                         <td>
-                            <a href="formtp3.php?ville_id=<?php echo $info["ville_id"];?>" title="aller à update.php"> <image src="../modifier.png" width="20" height="20"></a>  
+                        <?php echo $info["velocite"];?>
                         </td>
                         <td>
-                            <a href="tp4.php?ville_id=<?php echo $info["ville_id"];?>" title="aller à delete.php"> <image src="../delete.jfif" width="20" height="20"></a>  
+                        <?php echo $info["pv"];?>
+                        </td>
+                        <td>
+                            <a href="#?id=<?php echo $info["id"];?>" title="aller à update.php"> <image src="../modifier.png" width="20" height="20"></a>  
+                        </td>
+                        <td>
+                            <a href="#?ville_id=<?php echo $info["id"];?>" title="aller à delete.php"> <image src="../delete.jfif" width="20" height="20"></a>  
                         </td>
                     </tr>
                 <?php } ?>

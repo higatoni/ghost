@@ -28,12 +28,15 @@
                 // $query->execute();
             }
         
-            public function get($id) {
+            public function getall($id) {
                 $req = $this->_db->prepare("SELECT nom, couleur, velocite, pv FROM ghost WHERE nom = :nom");
                 $req->execute(array(":nom" => $nom));
                 
                 $result = $req->fetchAll(PDO::FETCH_ASSOC);
                 
+                foreach($result as $info){
+                    
+                }
             }
         
             public function getList() {
