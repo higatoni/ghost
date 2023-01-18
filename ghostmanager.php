@@ -28,31 +28,42 @@
                 // $query->execute();
             }
         
-            public function getall($id) {
-                $req = $this->_db->prepare("SELECT nom, couleur, velocite, pv FROM ghost WHERE nom = :nom");
-                $req->execute(array(":nom" => $nom));
+            public function getall() {
+                $req = $this->_db->prepare("SELECT * FROM ghost ");
+                $req->execute();
                 
                 $result = $req->fetchAll(PDO::FETCH_ASSOC);
-                
-                foreach($result as $info){
-                    
+
+                $listeFantomes=array();
+                foreach ($result as $valeurs) {
+                    $listeFantomes[]=new Ghost($valeurs);
                 }
+                //renvoie la liste
+                return $listeFantomes; 
+                
             }
-        
+            
+            public function getid($id){
+                $req = $this->_db->prepare("SELECT * FROM ghost where id=$id ");
+                $req->execute();
+                $result = $req->fetchAll(PDO::FETCH_ASSOC);
+                return new ghost($result);
+            }
+
             public function getList() {
                 // Retourne la liste de toutes les entrées
             }
         
             public function update($obj) {
                 // Exécute une requête de type UPDATE
-                // $sql = $this->_db->prepare("UPDATE ghost SET nom=:nom, couleur=:couleur, velocite=:velocite, pv=:pv where id=:id")
-                // $query=$sql
-                // $query->bindValue(':nom',$nom, PDO::PARAM_STR);
-                // $query->bindValue(':couleur',$couleur, PDO::PARAM_STR);
-                // $query->bindValue(':velocite',$velocite, PDO::PARAM_INT);
-                // $query->bindValue(':pv',$pv, PDO::PARAM_INT);
-                // $query->bindValue(':id',$id, PDO::PARAM_INT);
-                // $query->execute();
+                $req = $this->_db->prepare("UPDATE ghost SET nom=:nom, couleur=:couleur, velocite=:velocite, pv=:pv where id=:id");
+                $req->execute(array(
+                    "nom" => $obj->getNom(),
+                    "couleur" => $obj->getCouleur(),
+                    "velocite" => $obj->getVelocite(),
+                    "pv" => $obj->getPv(),
+                    "id" => $obj->getId()
+                ));
             }
         
             public function setDb(PDO $db) {

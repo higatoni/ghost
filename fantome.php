@@ -11,11 +11,11 @@
         require_once "ghostv2.php";
         require_once "bdd.php";
         require_once "ghostmanager.php";
-        $bubu = new Ghost(array("nom" => "bubu", "couleur" => "bleu", "velocite" => 2,"pv" => 10));
-        echo $bubu ->info();
+        $ghost = new Ghost(array("nom" => $_GET["nom"], "couleur" => $_GET["couleur"], "velocite" => $_GET["velocite"],"pv" => $_GET["pv"]));
+        echo $ghost ->info();
         
         $GhostManager = new GhostManager($db);
-        $GhostManager->add($bubu);
+        $GhostManager->add($ghost);
     ?>
 </body>
 </html>

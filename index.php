@@ -2,7 +2,8 @@
     require_once "ghostv2.php";
     require_once "bdd.php";
     require_once "ghostmanager.php";
-
+    $ghostManager = new GhostManager($db);
+    $lesFantomes=$ghostManager->getAll();
 ?>
 
 <!DOCTYPE html>
@@ -14,41 +15,13 @@
     <title>Document</title>
 </head>
     <body>
-    <table>
-        <thead>
-            <tr>
-                <th> Nom</th>
-                <th> Couleur </th>
-                <th> Velocite </th>
-                <th> Pv </th>
-            </tr>    
-        </thead>
-        <tbody>
-            <?php
-                foreach($tab as $info){
-            ?>
-                    <tr>
-                        <td>
-                            <?php echo $info["nom"];?>
-                        </td>
-                        <td>
-                        <?php echo $info["couleur"];?>
-                        </td>
-                        <td>
-                        <?php echo $info["velocite"];?>
-                        </td>
-                        <td>
-                        <?php echo $info["pv"];?>
-                        </td>
-                        <td>
-                            <a href="#?id=<?php echo $info["id"];?>" title="aller à update.php"> <image src="../modifier.png" width="20" height="20"></a>  
-                        </td>
-                        <td>
-                            <a href="#?ville_id=<?php echo $info["id"];?>" title="aller à delete.php"> <image src="../delete.jfif" width="20" height="20"></a>  
-                        </td>
-                    </tr>
-                <?php } ?>
-        </tbody>
-    </table>
-</body>
+        <table>
+        <a href="formfantome.php">Creer un fantome</a>
+        <?php
+        foreach ($lesFantomes as $key => $value) {
+            echo "<tr><td>".$value->getNom()."</td><td>".$value->getCouleur()."</td><td>".$value->getVelocite()."</td><td>".$value->getPv()."</td><td><a href=\"formupdatefantome.php?id=".$value->getId()."\">modifier</a></td><td><a href=\"deletefantome.php?id=".$value->getId()."\">supprimer</a></td></tr>";
+        }
+        ?>
+        </table>
+    </body>
 </html>
