@@ -21,11 +21,10 @@
             }
         
             public function delete($obj) {
-                // Exécute une requête de type DELETE
-                // $sql = $this->_db->prepare("DELETE FROM ghost where id=:id");
-                // $query=$sql
-                // $query->bindValue(':id',$id, PDO::PARAM_INT);
-                // $query->execute();
+                $req = $this->_db->prepare("DELETE FROM ghost WHERE id=:id");
+                $req->execute(array(
+                    "id" => $obj->getId()
+                ));
             }
         
             public function getall() {

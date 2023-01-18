@@ -16,6 +16,8 @@
         
         $GhostManager = new GhostManager($db);
         $GhostManager->add($ghost);
+        
     ?>
+    <a href="index.php">retour à l'accueil</a>
 </body>
 </html>
